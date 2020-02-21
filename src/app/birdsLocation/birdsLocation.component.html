@@ -1,0 +1,72 @@
+<div class="container-fluid m-3">
+  <div class="row">
+    <div class="col">
+      <input type="file" #csvReader name="Upload CSV" id="txtFileUpload" (change)="uploadListener($event)"
+        accept=".csv" />
+    </div>
+  </div>
+  <div class="row" *ngIf="records.length">
+    <div class="col">
+      <form>
+        <mat-form-field>
+          <mat-label>Assignee</mat-label>
+          <input type="text" matInput [formControl]="myControl" [matAutocomplete]="auto">
+          <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn" (optionSelected)="onSearchChange($event)">
+            <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+              {{option.file_id}}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+      </form>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-7">
+      <table class="minimalistBlack" *ngIf="records.length > 0">
+        <thead>
+          <tr>
+            <th>File ID</th>
+            <th>Genus</th>
+            <th>Species</th>
+            <th>English name</th>
+            <th>Provider</th>
+            <th>Country</th>
+            <th>Latitude</th>
+            <th>Longitude</th>
+            <th>Type</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let record of records;let i = index;">
+            <td> <span>{{record.file_id}}</span> </td>
+            <td> <span>{{record.genus}}</span> </td>
+            <td> <span>{{record.species}}</span> </td>
+            <td> <span>{{record.english_cname}}</span> </td>
+            <td> <span>{{record.who_provided_recording}}</span> </td>
+            <td> <span>{{record.country}}</span> </td>
+            <td> <span>{{record.latitude}}</span> </td>
+            <td> <span>{{record.longitute}}</span> </td>
+            <td> <span>{{record.type}}</span> </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-5">
+        <iframe width="600" height="450" frameborder="0" style="border:0" [src]=sourceMap allowfullscreen></iframe>
+    </div>
+  </div>
+  
+  <!-- <div class="row">
+    <div class="col">
+      <iframe width="600" height="450" frameborder="0" style="border:0" [src]=sourceMap allowfullscreen></iframe>
+    </div>
+  </div> -->
+  
+  <!-- <iframe
+    width="600"
+    height="450"
+    frameborder="0" style="border:0"
+    src="https://www.google.com/maps/embed/v1/place?key=AIzaSyDrAlG18NEimeuX7iLAxqr_YjH1RlOKKrY
+      &q=Space+Needle,Seattle+WA" allowfullscreen>
+  </iframe> -->
+</div>
