@@ -22,51 +22,60 @@
   </div>
   <div class="row">
     <div class="col-7">
-      <table class="minimalistBlack" *ngIf="records.length > 0">
-        <thead>
-          <tr>
-            <th>File ID</th>
-            <th>Genus</th>
-            <th>Species</th>
-            <th>English name</th>
-            <th>Provider</th>
-            <th>Country</th>
-            <th>Latitude</th>
-            <th>Longitude</th>
-            <th>Type</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let record of records;let i = index;">
-            <td> <span>{{record.file_id}}</span> </td>
-            <td> <span>{{record.genus}}</span> </td>
-            <td> <span>{{record.species}}</span> </td>
-            <td> <span>{{record.english_cname}}</span> </td>
-            <td> <span>{{record.who_provided_recording}}</span> </td>
-            <td> <span>{{record.country}}</span> </td>
-            <td> <span>{{record.latitude}}</span> </td>
-            <td> <span>{{record.longitute}}</span> </td>
-            <td> <span>{{record.type}}</span> </td>
-          </tr>
-        </tbody>
-      </table>
+      <div class="table-container">
+        <table mat-table [dataSource]="records" class="mat-elevation-z8" *ngIf="records.length > 0">
+          <ng-container matColumnDef="file_id">
+            <th mat-header-cell *matHeaderCellDef>File ID</th>
+            <td mat-cell *matCellDef="let element"> {{element.file_id}} </td>
+          </ng-container>
+        
+          <ng-container matColumnDef="genus">
+            <th mat-header-cell *matHeaderCellDef>Genus</th>
+            <td mat-cell *matCellDef="let element"> {{element.genus}} </td>
+          </ng-container>
+        
+          <ng-container matColumnDef="species">
+            <th mat-header-cell *matHeaderCellDef>Species</th>
+            <td mat-cell *matCellDef="let element"> {{element.species}} </td>
+          </ng-container>
+        
+          <ng-container matColumnDef="english_cname">
+            <th mat-header-cell *matHeaderCellDef>English name</th>
+            <td mat-cell *matCellDef="let element"> {{element.english_cname}} </td>
+          </ng-container>
+  
+          <ng-container matColumnDef="who_provided_recording">
+            <th mat-header-cell *matHeaderCellDef>Provider</th>
+            <td mat-cell *matCellDef="let element"> {{element.who_provided_recording}} </td>
+          </ng-container>
+  
+          <ng-container matColumnDef="country">
+            <th mat-header-cell *matHeaderCellDef>Country</th>
+            <td mat-cell *matCellDef="let element"> {{element.country}} </td>
+          </ng-container>
+          
+          <ng-container matColumnDef="latitude">
+            <th mat-header-cell *matHeaderCellDef>Latitude</th>
+            <td mat-cell *matCellDef="let element"> {{element.latitude}} </td>
+          </ng-container>
+  
+          <ng-container matColumnDef="longitute">
+            <th mat-header-cell *matHeaderCellDef>Longitute</th>
+            <td mat-cell *matCellDef="let element"> {{element.longitute}} </td>
+          </ng-container>
+  
+          <ng-container matColumnDef="type">
+            <th mat-header-cell *matHeaderCellDef>Type</th>
+            <td mat-cell *matCellDef="let element"> {{element.type}} </td>
+          </ng-container>
+  
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+      </div>
     </div>
     <div class="col-5">
-        <iframe width="600" height="450" frameborder="0" style="border:0" [src]=sourceMap allowfullscreen></iframe>
+        <iframe class="fixed-c" width="600" height="750" frameborder="0" style="border:0" [src]=sourceMap allowfullscreen></iframe>
     </div>
   </div>
-  
-  <!-- <div class="row">
-    <div class="col">
-      <iframe width="600" height="450" frameborder="0" style="border:0" [src]=sourceMap allowfullscreen></iframe>
-    </div>
-  </div> -->
-  
-  <!-- <iframe
-    width="600"
-    height="450"
-    frameborder="0" style="border:0"
-    src="https://www.google.com/maps/embed/v1/place?key=AIzaSyDrAlG18NEimeuX7iLAxqr_YjH1RlOKKrY
-      &q=Space+Needle,Seattle+WA" allowfullscreen>
-  </iframe> -->
 </div>

@@ -1,0 +1,9 @@
+.fixed-c{
+    position: fixed;
+    top: 50px;
+}
+
+.table-container{
+    overflow: auto;
+    height: 800px;
+}

@@ -24,6 +24,8 @@ export class BirdsLocationComponent implements OnInit {
   myControl = new FormControl();
   filteredOptions: Observable<CSVRecord[]>;
 
+  displayedColumns: string[] = ["file_id","genus","species","english_cname","who_provided_recording","country","latitude","longitute","type"];
+
   public records: CSVRecord[] = [];
   @ViewChild('csvReader', {static: false}) csvReader: any;
 
@@ -33,7 +35,7 @@ export class BirdsLocationComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.sourceMap = this.sanitizer.bypassSecurityTrustResourceUrl("https://www.google.com/maps/embed/v1/place?key=" + this.apiKey + "&q=Space+Needle&center=" + this.lat + "," + this.long);
+    this.sourceMap = this.sanitizer.bypassSecurityTrustResourceUrl("https://www.google.com/maps/embed/v1/view?key=" + this.apiKey + "&zoom=13&maptype=satellite&center=" + this.lat + "," + this.long);
     // this.httpClient.get("https://maps.googleapis.com/maps/api/geocode/json?latlng=40.714224,-73.961452&key=" + this.apiKey);
     this.filteredOptions = this.myControl.valueChanges
       .pipe(
@@ -130,7 +132,7 @@ export class BirdsLocationComponent implements OnInit {
 
   onSearchChange(event: MatAutocompleteSelectedEvent){
     console.log(event.option.value);
-    this.sourceMap = this.sanitizer.bypassSecurityTrustResourceUrl("https://www.google.com/maps/embed/v1/place?key=" + this.apiKey + "&q=Space+Needle&center=" + event.option.value.latitude + "," + event.option.value.longitute);
+    this.sourceMap = this.sanitizer.bypassSecurityTrustResourceUrl("https://www.google.com/maps/embed/v1/view?key=" + this.apiKey + "&zoom=13&maptype=satellite&center=" + event.option.value.latitude + "," + event.option.value.longitute);
   }
 
 }
