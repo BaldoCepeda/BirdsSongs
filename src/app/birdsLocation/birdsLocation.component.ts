@@ -135,4 +135,14 @@ export class BirdsLocationComponent implements OnInit {
     this.sourceMap = this.sanitizer.bypassSecurityTrustResourceUrl("https://www.google.com/maps/embed/v1/view?key=" + this.apiKey + "&zoom=13&maptype=satellite&center=" + event.option.value.latitude + "," + event.option.value.longitute);
   }
 
+  onSearchClicked(row: any){
+    console.log(row.file_id);
+    this.sourceMap = this.sanitizer.bypassSecurityTrustResourceUrl("https://www.google.com/maps/embed/v1/view?key=" + this.apiKey + "&zoom=13&maptype=satellite&center=" + row.latitude + "," + row.longitute);
+  }
+
+  rowSelected(row: any){
+    console.log(row.file_id);
+    this.onSearchClicked(row);
+  }
+
 }

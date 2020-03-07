@@ -7,3 +7,8 @@
     overflow: auto;
     height: 800px;
 }
+
+.hoverRow:hover{
+    background-color: lightgrey;
+    cursor: pointer;
+}
